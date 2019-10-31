@@ -23,7 +23,7 @@ module.exports = (env, options) => ({
     rules: [
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: /node_modules\/(?!(lit-element|lit-html))/,
         use: {
           loader: 'babel-loader'
         }

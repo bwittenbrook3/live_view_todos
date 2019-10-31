@@ -3,6 +3,39 @@
   <%= submit "Add", phx_disable_with: "Adding..." %>
 </form>
 
-<%= for todo <- @todos do %>
-  <div><%= todo.id %><%= todo.title %></div>
-<% end %>
+<a href="#"
+   phx-click="huh"
+   phx-value-something="bradley"
+   >
+   Click Me
+</a>
+
+<p id="bradley">
+  <local-time
+    time="<%= @time %>"
+    format="LTS z">
+  </local-time>
+</p>
+
+<table>
+  <%= for todo <- @todos do %>
+    <tr>
+      <td><span style="color: grey;"><%= todo.id %>.</span></td>
+      <td>
+        <%= if todo.title == "huh" do %>
+          <span style="color: green;font-weight:bold;"><%= todo.title %></span>
+        <% else %>
+          <%= todo.title %>
+        <% end %>
+      </td>
+      <td>
+        <a style="display: inline-block; margin-left:15px;"
+           href="#"
+           phx-click="destroy"
+           phx-value-todo="<%= todo.id%>">
+           Destroy
+        </a>
+      </td>
+    </tr>
+  <% end %>
+</table>
