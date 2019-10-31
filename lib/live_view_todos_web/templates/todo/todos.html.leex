@@ -10,12 +10,12 @@
    Click Me
 </a>
 
-<p id="bradley">
-  <local-time
-    time="<%= @time %>"
-    format="LTS z">
-  </local-time>
-</p>
+<local-time
+  phxOnClick="clicked"
+  time="<%= @time %>"
+  format="LTS z">
+</local-time>
+
 
 <table>
   <%= for todo <- @todos do %>

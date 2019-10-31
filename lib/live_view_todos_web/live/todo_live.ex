@@ -4,7 +4,7 @@ defmodule LiveViewTodosWeb.TodoLive do
   alias LiveViewTodos.Todos
   alias LiveViewTodosWeb.TodoView
 
-   @timedelay 1_000
+   @timedelay 500
 
   def mount(_session, socket) do
     Todos.subscribe()
@@ -29,10 +29,6 @@ defmodule LiveViewTodosWeb.TodoLive do
     |> Todos.delete_todo()
 
     {:noreply, fetch(socket)}
-  end
-
-  def handle_event("setupTimezone", tz, socket) do
-    {:noreply, assign(socket, tz: tz)}
   end
 
   def handle_event("mounted", _, socket) do

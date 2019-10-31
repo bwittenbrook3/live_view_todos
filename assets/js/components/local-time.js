@@ -9,6 +9,7 @@ export class LocalTime extends LitElement {
   static get properties() {
     return {
       time: { type: String },
+      phxOnClick: {type: String},
       format: { type: String }
     };
   }
@@ -28,24 +29,24 @@ export class LocalTime extends LitElement {
     sendLiveSocketEvent(this, "mounted")
   }
 
-  async handleClick() {
-    sendLiveSocketEvent(this, "mounted")
+  _handleClick() {
+    if (this.phxOnClick) {
+      sendLiveSocketEvent(this, this.phxOnClick)
+    }
   }
 
   render() {
     return html`
+      <p>${
+        moment(this.time)
+        .tz(moment.tz.guess())
+        .format(this.format)
 
-      <p>
-        ${
-          moment(this.time)
-          .tz(moment.tz.guess())
-          .format(this.format)
-
-        }
+      }
       </p>
 
-      <button class="" @click="${this.handleClick}">
-        hi
+      <button @click=${this._handleClick}>
+        click me
       </button>
     `
   }
